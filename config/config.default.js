@@ -8,12 +8,14 @@ module.exports = appInfo => {
 
   // add your config here
   config.middleware = [];
-  
+
   config.sequelize = {
     dialect: 'mysql',
     host: '127.0.0.1',
-    port: 3306,
-    database: 'egg-sequelize-doc-default',
+    port: 3300,
+    database: 'jx3todo',
+    username: 'root',
+    password: 'secret'
   };
 
   return config;
