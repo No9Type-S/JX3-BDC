@@ -22,7 +22,7 @@ module.exports = appInfo => {
     csrf: {
       enable: false,
     },
-    domianWhiteList: ['http://127.0.0.1:2233','http://127.0.0.1']
+    domainWhiteList: ['http://127.0.0.1:2233','http://127.0.0.1:2233/']
   }
 
   return config;
