@@ -18,5 +18,12 @@ module.exports = appInfo => {
     password: 'secret'
   };
 
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+    domianWhiteList: ['http://127.0.0.1:2233','http://127.0.0.1']
+  }
+
   return config;
 };
