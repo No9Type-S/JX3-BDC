@@ -33,13 +33,18 @@ class UserController extends Controller {
 
     const user = await ctx.model.User.create(userData)
 
-    const token = await ctx.app.jwt.sign(userData.email, ctx.app.config.jwt.secret, {
-      expiresIn: '1h'
+    const tokenData = {
+      email: user.email,
+      id: user.id
+    }
+
+    const token = await ctx.app.jwt.sign(tokenData, ctx.app.config.jwt.secret,{
+      expiresIn: 60 * 60
     })
 
     ctx.status = 201;
     ctx.body = {
-      message: 'Account created.',
+      message: '创建成功。',
       token: token
     }
   }
@@ -68,14 +73,17 @@ class UserController extends Controller {
       ctx.throw( 400, msg )
     }
 
-    const token = await ctx.app.jwt.sign(user.email, ctx.app.config.jwt.secret, {
-      expiresIn: '1h'
+    const tokenData = {
+      email: user.email,
+      id: user.id
+    }
+    const token = await ctx.app.jwt.sign(tokenData, ctx.app.config.jwt.secret, {
+      expiresIn: 60 * 60
     })
 
     ctx.status = 201;
-    
     ctx.body = {
-      message: 'Logined',
+      message: '登录成功!',
       token: token
     }
   }
