@@ -23,7 +23,11 @@ module.exports = appInfo => {
       enable: false,
     },
     domainWhiteList: ['http://127.0.0.1:2233','http://127.0.0.1:2233/']
-  }
+  };
+
+  config.jwt = {
+    secret: 'JX3TODOLIST'
+  };
 
   return config;
 };
