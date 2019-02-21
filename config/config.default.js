@@ -29,5 +29,9 @@ module.exports = appInfo => {
     secret: 'JX3TODOLIST'
   };
 
+  config.bcrypt = {
+    saltRounds: 10
+  };
+
   return config;
 };

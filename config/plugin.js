@@ -15,5 +15,10 @@ exports.jwt = {
   package: 'egg-jwt'
 }
 
+exports.bcrypt = {
+  enable: true,
+  package: 'egg-bcrypt'
+}
+
 // had enabled by egg
 // exports.static = true;

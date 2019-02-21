@@ -8,18 +8,26 @@ class UserController extends Controller {
   }
 
   async register(){
-    if(!ctx.request.body.email || ctx.request.body.password){
-      return {
+    const ctx = this.ctx
+    if(!ctx.request.body.email && !ctx.request.body.password){
+      return ctx.body = {
         code: 403,
-        message: '没有获取到有效的账号信息'
+        message: 'Get none data.'
       }
     }
     const userData = {
       email: ctx.request.body.email,
-      password: ctx.request.body.password
+      password: await ctx.genHash(ctx.request.body.password)
     }
-    const token = ctx.app.jwt.sign(userData, )
-    this.ctx.body = 'Success response register api.'
+    const user = await ctx.model.User.create(userData)
+    const token = await ctx.app.jwt.sign(userData, ctx.app.config.jwt.secret, {
+      expiresIn: '1h'
+    })
+    ctx.body = {
+      code: 200,
+      message: 'Account created.',
+      token: token
+    }
   }
 }
 
