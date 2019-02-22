@@ -25,6 +25,11 @@ module.exports = appInfo => {
     domainWhiteList: ['http://127.0.0.1:2233','http://127.0.0.1:2233/']
   };
 
+  config.cors = {
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+    credentials: true
+  };
+
   config.jwt = {
     secret: 'JX3TODOLIST'
   };
