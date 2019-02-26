@@ -92,6 +92,19 @@ class UserController extends Controller {
       token: token
     }
   }
+
+  async verify(){
+    this.ctx.body = {
+      message: '中间件验证成功'
+    }
+  }
+
+  async invalid(){
+    this.ctx.body = {
+      message: '这里发送错误信息来表示需要清除cookie或者重新登录'
+    }
+  }
+
 }
 
 module.exports = UserController;
