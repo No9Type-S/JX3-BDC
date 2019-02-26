@@ -52,11 +52,13 @@ class UserController extends Controller {
   async login() {
     const ctx = this.ctx
     const { email, password } = ctx.request.body
+    let user
     if(!email && !password){
       let msg = '请填写账号信息'
       ctx.throw(400, msg)
     }
-    const user = await ctx.model.User.find({
+
+    user = await ctx.model.User.find({
       where: {
         email: email
       }
@@ -64,13 +66,16 @@ class UserController extends Controller {
 
     let passVerify = false
 
-    if (user.id) {
-      passVerify = await ctx.compare(password, user.password) // verify passowrd
+    if ( user ) {
+      if( user.id ){
+        passVerify = await ctx.compare(password, user.password) // verify passowrd
+      }
     }
 
     if ( !passVerify ) {
-      let msg = '账号或者密码错误'
-      ctx.throw( 400, msg )
+      return ctx.body = {
+        message: '账号或密码错误.'
+      }
     }
 
     const tokenData = {
