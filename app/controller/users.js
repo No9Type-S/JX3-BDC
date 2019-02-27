@@ -94,8 +94,11 @@ class UserController extends Controller {
   }
 
   async verify(){
-    this.ctx.body = {
-      message: '中间件验证成功'
+    const ctx = this.ctx
+    const user = ctx.app.jwt.verify(ctx.cookies.get('token', { signed: false }))
+    ctx.body = {
+      message: '中间件验证成功',
+      user: user
     }
   }
 
