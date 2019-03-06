@@ -73,6 +73,7 @@ class UserController extends Controller {
     }
 
     if ( !passVerify ) {
+      ctx.status = 403;
       return ctx.body = {
         message: '账号或密码错误.'
       }
