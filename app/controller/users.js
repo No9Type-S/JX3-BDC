@@ -7,6 +7,7 @@ class UserController extends Controller {
     this.ctx.body = 'hi, egg';
   }
 
+  // Register
   async register(){
     const ctx = this.ctx
     const { email, password } = ctx.request.body
@@ -49,6 +50,7 @@ class UserController extends Controller {
     }
   }
 
+  // Login
   async login() {
     const ctx = this.ctx
     const { email, password } = ctx.request.body
