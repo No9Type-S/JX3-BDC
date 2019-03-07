@@ -46,7 +46,11 @@ class UserController extends Controller {
     ctx.status = 201;
     ctx.body = {
       message: '创建成功。',
-      token: token
+      token: token,
+      user: {
+        email: user.email,
+        id: user.id
+      }
     }
   }
 
@@ -92,7 +96,11 @@ class UserController extends Controller {
     ctx.status = 201;
     ctx.body = {
       message: '登录成功!',
-      token: token
+      token: token,
+      user: {
+        email: user.email,
+        id: user.id
+      }
     }
   }
 
